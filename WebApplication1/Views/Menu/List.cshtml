@@ -1,11 +1,29 @@
 ﻿
-
-
-    @{ 
-        foreach(var c in Model.allMenu)
-        {
-            <div>
+@{
+    foreach (var c in Model.allMenu)
+    {
+        if (c.Status == 1)
+            continue;
+    <div class="dropdown">
+        <li class="nav-item">
+            <button class="btn btn-default dropdown-toggle align-text-top" type="button" id="menu1" data-toggle="dropdown">
                 @c.MenuName
-            </div>
-        }
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                @{ foreach (var derieved in Model.allMenu)
+                    {
+                        if (derieved.ParentId == c.Id)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@derieved.MenuName</a></li>
+
+                        }
+                    }
+                }
+            </ul>
+        </li>
+    </div>
+
+
     }
+ }

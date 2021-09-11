@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -18,8 +19,9 @@ namespace WebApplication1.Controllers
         }
         public ViewResult List()
         {
-            var menu = _AllMenu.AllMenu;
-            return View(menu);
+            MenuListViewModel list = new MenuListViewModel();
+            list.allMenu = _AllMenu.AllMenu;
+            return View(list);
         }
 
     }

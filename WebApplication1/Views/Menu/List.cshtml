@@ -4,25 +4,23 @@
     {
         if (c.Status == 1)
             continue;
-    <div class="dropdown">
         <li class="nav-item">
             <button class="btn btn-default dropdown-toggle align-text-top" type="button" id="menu1" data-toggle="dropdown">
                 @c.MenuName
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                @{ foreach (var derieved in Model.allMenu)
+                @{ for (int i = 0; i < Model.allMenu.Count; i ++)
                     {
-                        if (derieved.ParentId == c.Id)
+                        if (Model.allMenu[i].ParentId == c.Id)
                         {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@derieved.MenuName</a></li>
-
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Ending", "Menu", new {s = Model.allMenu[i]})">@Model.allMenu[i].MenuName</a></li>
+                            Model.allMenu[i].Status = 1;
                         }
                     }
                 }
             </ul>
         </li>
-    </div>
 
 
     }
